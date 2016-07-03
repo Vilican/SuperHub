@@ -1,0 +1,26 @@
+name: SuperHub
+description: Simple, yet powerful hub teleportation.
+main: com.vilican.superhub.Main
+version: 1.0
+author: vilican
+commands:
+  sethub:
+    description: Set hub position.
+    usage: /sethub
+  hub:
+    description: Teleport to hub.
+    usage: /hub
+permissions:
+  hub.*:
+    description: All permissions to SuperHub plugin.
+    default: op
+    children:
+      hub.sethub: true
+  hub.tphub:
+    description: Can teleport to hub.
+    default: true
+  hub.sethub:
+    description: Can set hub position.
+    default: op
+    children:
+      hub.tphub: true

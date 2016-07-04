@@ -16,6 +16,8 @@
  */
 package com.vilican.superhub;
 
+import static com.vilican.superhub.MoveEvent.checked;
+import static java.lang.Thread.sleep;
 import static org.bukkit.Bukkit.getWorld;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -38,12 +40,23 @@ public class TpHubCommand implements CommandExecutor {
             return true;
         } else if (sender instanceof Player) {
             if (sender.hasPermission("hub.tphub")) {
-                Player player = (Player) sender;
-                ConfigAccessor config = new ConfigAccessor(Main.getPlugin(), "config.yml");
-                World w = getWorld(config.getConfig().getString("world"));
-                player.teleport(new Location(w, config.getConfig().getInt("x"), config.getConfig().getInt("y"), config.getConfig().getInt("z")));
-                config.saveConfig();
-                sender.sendMessage(ChatColor.GREEN + "You have been teleported to the hub.");
+                final Player player = (Player) sender;
+                if (!sender.hasPermission("hub.immediate")) {
+                    sender.sendMessage(ChatColor.BLUE + "You will be teleported to the hub. Do not move for 10 seconds.");
+                    MoveEvent.addPlayer(player);
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            if (checked.containsKey(player)) {
+                                MoveEvent.removePlayer(player);
+                                MoveEvent.teleport(player);
+                            }
+                        }
+                    }, 10000);
+                } else {
+                    MoveEvent.teleport(player);
+                }
                 return true;
             } else {
                 sender.sendMessage(ChatColor.RED + "Access denied!");

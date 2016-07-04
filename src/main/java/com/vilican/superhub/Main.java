@@ -32,7 +32,8 @@ public class Main extends JavaPlugin {
         plugin = this;
         this.getCommand("sethub").setExecutor(new SetHubCommand());
         this.getCommand("hub").setExecutor(new TpHubCommand());
-        System.out.println("SuperHub v1.0 by vilican");
+        getServer().getPluginManager().registerEvents(new MoveEvent(), this);
+        System.out.println("SuperHub v1.1 by vilican");
         System.out.println("Plugin enabled and running");
     }
 

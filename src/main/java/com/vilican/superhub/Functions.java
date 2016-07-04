@@ -31,7 +31,7 @@ public class Functions {
             Player playersender = (Player) sender;
             playersender.sendMessage(ChatColor.AQUA + "=====================================================");
             playersender.sendMessage(ChatColor.AQUA + "");
-            playersender.sendMessage(ChatColor.AQUA + "SuperHub v1.0 by vilican");
+            playersender.sendMessage(ChatColor.AQUA + "SuperHub v1.1 by vilican");
             playersender.sendMessage(ChatColor.AQUA + "");
             playersender.sendMessage(ChatColor.AQUA + "/hub - teleports you to the hub");
             playersender.sendMessage(ChatColor.AQUA + "/sethub - set hub coordinates to here");
@@ -39,7 +39,7 @@ public class Functions {
             playersender.sendMessage(ChatColor.AQUA + "=====================================================");
         } else if (sender instanceof ConsoleCommandSender) {
             System.out.println("=====================================================");
-            System.out.println("SuperHub v1.0 by vilican");
+            System.out.println("SuperHub v1.1 by vilican");
             System.out.println("/hub - teleports you to the hub");
             System.out.println("/sethub - set hub coordinates to here");
             System.out.println("=====================================================");
